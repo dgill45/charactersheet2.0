@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import ChooseOrQuiz from './components/ChooseOrQuiz';
 import ClassList from './components/ClassList';
@@ -5,22 +7,38 @@ import Quiz from './components/Quiz';
 import { generateStats } from './utils';
 
 function App() {
+  const [step, setStep] = useState('chooseOrQuiz'); // or 'classList' or 'quiz'
+  const [chosenClass, setChosenClass] = useState(null);
+
+  const handleChoice = choice => {
+    setStep(choice);
+  };
+
+  const handleClassSelect = characterClass => {
+    setChosenClass(characterClass);
+    // Generate stats and save (just logging for now)
+    console.log({
+      className: characterClass.name,
+      stats: {
+        strength: generateStats(),
+        dexterity: generateStats(),
+        constitution: generateStats(),
+        intelligence: generateStats(),
+        wisdom: generateStats(),
+        charisma: generateStats(),
+      }
+    });
+  };
+
+  const handleQuizComplete = characterClass => {
+    handleClassSelect(characterClass);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {step === 'chooseOrQuiz' && <ChooseOrQuiz onChoice={handleChoice} />}
+      {step === 'choose' && <ClassList onClassSelect={handleClassSelect} />}
+      {step === 'quiz' && <Quiz onQuizComplete={handleQuizComplete} />}
     </div>
   );
 }
