@@ -1,5 +1,3 @@
-// src/components/ChooseOrQuiz.js
-
 import React from 'react';
 
 function ChooseOrQuiz({ onChoice }) {
