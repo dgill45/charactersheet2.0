@@ -1,5 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ChooseOrQuiz from './components/ChooseOrQuiz';
+import ClassList from './components/ClassList';
+import Quiz from './components/Quiz';
+import { generateStats } from './utils';
 
 function App() {
   return (
