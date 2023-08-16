@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import ChooseOrQuiz from './components/ChooseOrQuiz';
 import ClassList from './components/ClassList';
